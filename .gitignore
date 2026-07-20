@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Local temp files
 temp/
+original-site/
+temp_log2.txt
+extracted_menu.txt
