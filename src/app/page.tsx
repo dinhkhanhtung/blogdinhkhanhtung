@@ -174,14 +174,27 @@ const FEATURED_POSTS: Post[] = [
   }
 ];
 
-const MY_APPS = [
+interface AppItem {
+  title: string;
+  desc: string;
+  image: string;
+  link: string;
+  tag: string;
+  type: string;
+  rating?: string;
+  downloads?: string;
+}
+
+const MY_APPS: AppItem[] = [
   {
     title: "MoneyFlow Smart",
     desc: " MoneyFlow Smart là giải pháp quản lý tài chính cá nhân hiện đại, trực quan và dễ sử dụng trên Android.",
     image: "https://play-lh.googleusercontent.com/YNu9gjjD3oRoLdRVmoeLIepStqxGT3qOwJRHn-oVaGWrbryUcadKTk93gAnkshui4xOyeBlPr0FP60V9QHW2Nc8",
     link: "https://play.google.com/store/apps/details?id=com.financeapp.personal_finance_app",
     tag: "Tài chính",
-    type: "Android App"
+    type: "Android App",
+    rating: "4.8",
+    downloads: "100+"
   },
   {
     title: "SellEasy - Nhật Ký Bán Hàng",
@@ -189,7 +202,9 @@ const MY_APPS = [
     image: "https://play-lh.googleusercontent.com/N4WG5Wf3AUlKC4ISS1NtvXIokA_9vZ-ezsPZ6pwHvSatVghbJRrBvw0iIUWMyv_HRGPKt0pAK5dFTNowpwfLfg",
     link: "https://play.google.com/store/apps/details?id=com.dinhkhanhtung.selleasy",
     tag: "Bán hàng",
-    type: "Android App"
+    type: "Android App",
+    rating: "4.9",
+    downloads: "500+"
   },
   {
     title: "Vidu Family",
@@ -485,7 +500,7 @@ export default function Home() {
                 href={app.link} 
                 target="_blank" 
                 rel="noreferrer"
-                className="w-[280px] min-w-[280px] shrink-0 snap-start snap-center sm:snap-align-none sm:w-auto group block bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="w-[280px] min-w-[280px] shrink-0 snap-start snap-center sm:snap-align-none sm:w-auto group flex flex-col bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="aspect-[16/9] relative overflow-hidden bg-slate-200">
                   <img src={app.image} alt={app.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -496,11 +511,22 @@ export default function Home() {
                     {app.type}
                   </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-bold text-base text-slate-900 mb-1 group-hover:text-blue-600 transition-colors flex items-center gap-2">
-                    {app.title} <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">{app.desc}</p>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div className="mb-3">
+                    <h3 className="font-bold text-base text-slate-900 mb-1 group-hover:text-blue-600 transition-colors flex items-center gap-2">
+                      {app.title} <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-2">{app.desc}</p>
+                  </div>
+                  {app.rating && (
+                    <div className="flex items-center gap-3 text-[11px] font-bold text-slate-600 border-t border-slate-200/60 pt-2.5 mt-auto">
+                      <span className="flex items-center gap-1 text-amber-500">
+                        <Star className="w-3.5 h-3.5 fill-amber-500" /> {app.rating}
+                      </span>
+                      <span className="text-slate-300">|</span>
+                      <span className="text-slate-500">{app.downloads} lượt tải</span>
+                    </div>
+                  )}
                 </div>
               </a>
             ))}
