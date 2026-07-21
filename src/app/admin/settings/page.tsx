@@ -1,90 +1,150 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { Settings, Shield, Bell, Check, ArrowLeft, ToggleLeft, ToggleRight } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { Loader2, Save } from 'lucide-react';
+import { APIKeysSettings } from '@/types/blog';
 
-export default function AdminSettingsPage() {
-  const [fakePopupEnabled, setFakePopupEnabled] = useState(true);
-  const [saved, setSaved] = useState(false);
+export default function AdminSettings() {
+  const [settings, setSettings] = useState<APIKeysSettings>({
+    imgbbApiKey: '',
+    facebookPageId: '',
+    facebookPageToken: '',
+  });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
 
   useEffect(() => {
-    const val = localStorage.getItem("fake_popup_enabled");
-    if (val === "false") {
-      setFakePopupEnabled(false);
-    }
+    const fetchSettings = async () => {
+      try {
+        const docRef = doc(db, 'settings', 'api_keys');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setSettings(docSnap.data() as APIKeysSettings);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy cấu hình:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSettings();
   }, []);
 
-  const handleToggle = () => {
-    const nextVal = !fakePopupEnabled;
-    setFakePopupEnabled(nextVal);
-    localStorage.setItem("fake_popup_enabled", nextVal ? "true" : "false");
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSettings({
+      ...settings,
+      [e.target.name]: e.target.value,
+    });
   };
 
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setMessage({ type: '', text: '' });
+
+    try {
+      await setDoc(doc(db, 'settings', 'api_keys'), settings);
+      setMessage({ type: 'success', text: 'Đã lưu cấu hình thành công!' });
+    } catch (error: any) {
+      console.error("Lỗi lưu cấu hình:", error);
+      setMessage({ type: 'error', text: error.message || 'Có lỗi xảy ra khi lưu' });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center p-12">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-slate-50 p-6 md:p-12">
-      <div className="max-w-3xl mx-auto space-y-8">
-        
-        {/* Back Link */}
-        <div>
-          <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-[#15803d]">
-            <ArrowLeft className="w-4 h-4" /> Quay lại trang chủ
-          </Link>
+    <div className="p-6 max-w-4xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Cấu hình API</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-1">
+          Quản lý các khóa API bên thứ ba sử dụng trong hệ thống
+        </p>
+      </div>
+
+      <form onSubmit={handleSave} className="space-y-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">ImgBB (Lưu trữ hình ảnh)</h2>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              API Key
+            </label>
+            <input
+              type="text"
+              name="imgbbApiKey"
+              value={settings.imgbbApiKey || ''}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+              placeholder="Nhập ImgBB API Key"
+            />
+            <p className="mt-1 text-sm text-gray-500">
+              Lấy tại: <a href="https://api.imgbb.com/" target="_blank" rel="noreferrer" className="text-primary hover:underline">api.imgbb.com</a>
+            </p>
+          </div>
         </div>
 
-        {/* Header */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#15803d]/10 text-[#15803d] flex items-center justify-center">
-              <Settings className="w-6 h-6" />
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Facebook Auto Share</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Page ID
+              </label>
+              <input
+                type="text"
+                name="facebookPageId"
+                value={settings.facebookPageId || ''}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                placeholder="Nhập ID của Fanpage"
+              />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Quản Trị Bảng Điều Khiển</h1>
-              <p className="text-xs text-slate-500">Cấu hình cài đặt hệ thống blog Đinh Khánh Tùng</p>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Page Access Token (Never Expires)
+              </label>
+              <input
+                type="text"
+                name="facebookPageToken"
+                value={settings.facebookPageToken || ''}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                placeholder="Nhập Token truy cập trang"
+              />
             </div>
-          </div>
-          {saved && (
-            <div className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg text-xs font-bold animate-in fade-in">
-              <Check className="w-4 h-4" /> Đã lưu cài đặt!
-            </div>
-          )}
-        </div>
-
-        {/* Setting Items */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-xs">
-          <h2 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-            <Bell className="w-5 h-5 text-[#15803d]" /> Tương Tác & Pop-up Seeding
-          </h2>
-
-          <div className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <div className="space-y-1">
-              <h3 className="text-sm font-bold text-slate-900">Bật / Tắt Pop-up Thông Báo Seeding Giả</h3>
-              <p className="text-xs text-slate-500 max-w-md">
-                Khi bật, hệ thống sẽ tự động hiển thị các thông báo seeding nhỏ gọn ở góc màn hình (Thái Nguyên, Hà Nội...) để tăng độ sôi động cho website.
-              </p>
-            </div>
-            <button
-              onClick={handleToggle}
-              className={`p-2 rounded-xl transition-colors ${
-                fakePopupEnabled ? "text-[#15803d]" : "text-slate-400"
-              }`}
-            >
-              {fakePopupEnabled ? (
-                <ToggleRight className="w-10 h-10" />
-              ) : (
-                <ToggleLeft className="w-10 h-10" />
-              )}
-            </button>
-          </div>
-
-          <div className="text-xs text-slate-400 pt-2 border-t border-slate-100">
-            * Cài đặt này được lưu trên trình duyệt cá nhân và cấu hình môi trường. Bạn có thể bật/tắt bất cứ lúc nào.
           </div>
         </div>
 
-      </div>
+        {message.text && (
+          <div className={`p-4 rounded-lg text-sm font-medium ${
+            message.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+          }`}>
+            {message.text}
+          </div>
+        )}
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={saving}
+            className="flex items-center space-x-2 px-6 py-2.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors disabled:opacity-70"
+          >
+            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+            <span>Lưu cấu hình</span>
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -56,12 +56,12 @@ export default function ToolCard({
   return (
     <Link
       href={href}
-      className={`group relative flex flex-col p-6 bg-white border border-slate-100 rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.borderHover}`}
+      className="group relative flex flex-col p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/40"
     >
       <div className="flex items-start justify-between gap-4">
         {/* Icon */}
         <div
-          className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${styles.iconBg}`}
+          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white"
         >
           {icon}
         </div>
@@ -69,7 +69,7 @@ export default function ToolCard({
         {/* Badge */}
         {badge && (
           <span
-            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${styles.badgeBg}`}
+            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20"
           >
             {badge}
           </span>
@@ -77,17 +77,17 @@ export default function ToolCard({
       </div>
 
       <div className="mt-5 flex-1">
-        <h3 className="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+        <h3 className="text-lg font-heading font-bold text-slate-900 group-hover:text-primary transition-colors flex items-center gap-1.5">
           {title}
-          <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </h3>
-        <p className="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-2">
+        <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2">
           {description}
         </p>
       </div>
 
       {/* Background decoration */}
-      <div className="absolute inset-0 border border-transparent rounded-2xl pointer-events-none transition-colors group-hover:border-slate-200/50" />
+      <div className="absolute inset-0 border border-transparent rounded-2xl pointer-events-none transition-colors group-hover:border-primary/20" />
     </Link>
   );
 }

@@ -17,7 +17,6 @@ import {
   MessageCircle,
   Stethoscope
 } from "lucide-react";
-import FakePurchasePopup from "@/components/shared/FakePurchasePopup";
 
 interface SubMenuItem {
   title: string;
@@ -204,10 +203,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fbfaf8] text-slate-800">
+    <div className="flex flex-col min-h-screen bg-background text-slate-800">
       
       {/* Top Bar - Thông tin liên hệ nhanh */}
-      <div className="bg-[#15803d] text-white py-2 px-4 hidden md:block">
+      <div className="bg-primary text-white py-2 px-4 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-medium">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
@@ -227,28 +226,28 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Main Header */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/80 ${
-          isScrolled ? "shadow-md py-2.5" : "py-3.5"
+        className={`sticky top-0 z-40 transition-shadow duration-200 bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3.5 ${
+          isScrolled ? "shadow-md" : "shadow-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="w-11 h-11 bg-gradient-to-br from-[#15803d] via-emerald-700 to-amber-600 text-white flex items-center justify-center text-2xl font-black font-heading rounded-2xl shadow-md group-hover:scale-105 transition-transform border border-white/20">
+          <Link href="/" className="flex items-center gap-2 xl:gap-3 shrink-0">
+            <div className="w-10 h-10 xl:w-12 xl:h-12 bg-primary text-white flex items-center justify-center text-xl xl:text-2xl font-bold rounded-lg shadow-sm">
               T
             </div>
             <div className="flex flex-col">
-              <span className="text-lg xl:text-xl font-heading font-black text-slate-900 leading-tight group-hover:text-[#15803d] transition-colors">
+              <span className="text-lg xl:text-xl font-heading font-bold text-slate-900 leading-tight">
                 Đinh Khánh Tùng
               </span>
-              <span className="text-xs text-[#15803d] font-bold hidden sm:block">
-                Thầy thuốc YHCT & Tech Specialist
+              <span className="text-xs xl:text-sm text-primary font-semibold hidden sm:block">
+                Thầy thuốc YHCT & Blogger
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
             {menuItems.map((item) => {
               const isActive = pathname === item.href || (pathname === '/blog' && item.href.includes('/blog'));
               
@@ -256,26 +255,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 return (
                   <div key={item.title} className="relative group">
                     <button
-                      className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${
+                      className={`flex items-center gap-1 px-3 xl:px-4 py-2 text-sm xl:text-base transition-colors whitespace-nowrap ${
                         isActive
-                          ? "bg-[#15803d] text-white shadow-sm"
-                          : "text-slate-700 hover:bg-slate-100 hover:text-[#15803d]"
+                          ? "relative text-primary font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-primary after:rounded-full"
+                          : "text-slate-700 hover:text-primary font-medium"
                       }`}
                     >
                       {item.title} <ChevronDown className="w-4 h-4" />
                     </button>
                     
                     {/* Dropdown Menu */}
-                    <div className={`absolute top-full mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[220px] overflow-hidden ${item.dropdownWidth || 'left-0'}`}>
+                    <div className={`absolute top-full mt-2 bg-white rounded-lg shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[200px] overflow-hidden ${item.dropdownWidth || 'left-0'}`}>
                       {item.groups ? (
-                        <div className={`grid gap-4 p-5 ${item.dropdownCols || 'grid-cols-2'}`}>
+                        <div className={`grid gap-4 p-4 ${item.dropdownCols || 'grid-cols-2'}`}>
                           {item.groups.map((group) => (
                             <div key={group.name} className="space-y-2">
-                              <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 border-b border-slate-100 pb-1.5">{group.name}</h5>
+                              <h5 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 border-b border-slate-100 pb-1">{group.name}</h5>
                               <ul className="space-y-1">
                                 {group.items.map((subItem) => (
                                   <li key={subItem.href}>
-                                    <Link href={subItem.href} className="block px-3 py-2 text-xs font-bold text-slate-700 hover:bg-[#15803d]/10 hover:text-[#15803d] rounded-xl transition-colors">
+                                    <Link href={subItem.href} className="block px-2 py-1.5 text-sm font-semibold text-slate-700 hover:bg-primary/10 hover:text-primary rounded-md transition-colors">
                                       {subItem.title}
                                     </Link>
                                   </li>
@@ -287,7 +286,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       ) : (
                         <div className="py-2 w-56">
                           {item.simpleItems?.map((subItem) => (
-                            <Link key={subItem.href} href={subItem.href} className="block px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#15803d]/10 hover:text-[#15803d] transition-colors">
+                            <Link key={subItem.href} href={subItem.href} className="block px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-primary/10 hover:text-primary transition-colors">
                               {subItem.title}
                             </Link>
                           ))}
@@ -302,10 +301,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${
+                  className={`px-3 xl:px-4 py-2 text-sm xl:text-base transition-colors whitespace-nowrap ${
                     isActive
-                      ? "bg-[#15803d] text-white shadow-sm"
-                      : "text-slate-700 hover:bg-slate-100 hover:text-[#15803d]"
+                      ? "relative text-primary font-bold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:bg-primary after:rounded-full"
+                      : "text-slate-700 hover:text-primary font-medium"
                   }`}
                 >
                   {item.title}
@@ -320,21 +319,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               href="https://zalo.me/0982581222"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95 whitespace-nowrap"
+              className="hidden md:flex items-center gap-2 bg-[#ca8a04] hover:bg-[#a16207] text-white px-4 xl:px-5 py-2.5 rounded-md text-sm xl:text-base font-bold transition-colors shadow-sm whitespace-nowrap"
             >
               <img
                 src="https://i.ibb.co/Wjz9N4P/AVv-Xs-Eg3-Dr-Zo-Aw-Hqb-R-Du-Iy32r-VDU8jh-XVN5-BI1-EFLFgt6-TLycc0-Ww9n1xen-D4-7r-MP4-jgdv-Hbyu-2-Gu-TN2h-O.png"
                 alt="Zalo"
-                className="w-4 h-4 object-contain brightness-0 invert"
+                className="w-5 h-5 object-contain brightness-0 invert"
               />
               Tư vấn Zalo
             </a>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-xl"
+              className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-md"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>
           </div>
         </div>
@@ -690,9 +689,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           />
         </a>
       </div>
-
-      {/* Fake Purchase / Booking Notification Popup */}
-      <FakePurchasePopup />
     </div>
   );
 }
