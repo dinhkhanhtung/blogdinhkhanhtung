@@ -340,7 +340,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main key={pathname} className="flex-1 animate-page-fade-in">
         {children}
       </main>
 

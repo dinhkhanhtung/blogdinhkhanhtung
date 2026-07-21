@@ -40,14 +40,14 @@ export default function RootLayout({
       <body className="font-sans bg-[#fbfaf8] text-slate-800">
         <NextTopLoader
           color="#15803d"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
+          initialPosition={0.15}
+          crawlSpeed={300}
+          height={3.5}
           crawl={true}
           showSpinner={false}
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px #15803d,0 0 5px #15803d"
+          easing="cubic-bezier(0.16, 1, 0.3, 1)"
+          speed={300}
+          shadow="0 0 14px #15803d, 0 0 6px #22c55e"
         />
         <DashboardLayout>
           {children}
