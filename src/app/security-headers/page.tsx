@@ -17,7 +17,7 @@ export default function SecurityHeadersPage() {
         
         <div className="flex flex-col gap-6">
           <div className="flex gap-2">
-            <input type="url" placeholder="https://congcuseoai.com" className="flex-1 p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-slate-700 shadow-sm font-medium" />
+            <input type="url" placeholder="https://dinhkhanhtung.com" className="flex-1 p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-slate-700 shadow-sm font-medium" />
             <button className="px-8 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">Quét Headers</button>
           </div>
           

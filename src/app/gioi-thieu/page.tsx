@@ -18,7 +18,7 @@ export default function GioiThieuPage() {
             Đinh Khánh Tùng & Phòng Chẩn Trị YHCT Thu Bẩy
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-semibold">
-            Kết hợp giá trị truyền thống của Y Học Cổ Truyền Việt Nam với công nghệ hiện đại. Mang đến giải pháp tư vấn và chẩn trị sức khỏe uy tín tại Thái Nguyên bằng Y Học Cổ Truyền và hỗ trợ cộng đồng thông qua SEO AI.
+            Kết hợp giá trị truyền thống của Y Học Cổ Truyền Việt Nam với công nghệ hiện đại. Mang đến giải pháp tư vấn và chẩn trị sức khỏe uy tín tại Thái Nguyên bằng Y Học Cổ Truyền và hỗ trợ cộng đồng thông qua hệ thống tiện ích số trực tuyến.
           </p>
         </div>
       </div>
@@ -34,13 +34,13 @@ export default function GioiThieuPage() {
               Sứ mệnh của chúng tôi
             </h3>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-semibold">
-              Chào mừng bạn đến với **SEO AI**, nền tảng cổng công cụ đa năng được sáng lập và vận hành bởi **Đinh Khánh Tùng**.
+              Chào mừng bạn đến với **Blog Đinh Khánh Tùng**, nền tảng chia sẻ tri thức Y Học Cổ Truyền & Cổng công cụ tiện ích số được sáng lập và vận hành bởi **Đinh Khánh Tùng**.
             </p>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-semibold">
-              Bên cạnh hoạt động nghiên cứu công nghệ và tối ưu hóa tìm kiếm, tôi hiện đang trực tiếp quản lý và vận hành **Phòng Chẩn Trị Y Học Cổ Truyền Thu Bẩy** tại Thái Nguyên.
+              Bên cạnh hoạt động nghiên cứu công nghệ và giải pháp tối ưu hóa trực tuyến, tôi hiện đang trực tiếp quản lý và vận hành **Phòng Chẩn Trị Y Học Cổ Truyền Thu Bẩy** tại Thái Nguyên.
             </p>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-semibold">
-              Chúng tôi chuyên tư vấn, chẩn trị và hỗ trợ phục hồi sức khỏe bằng các phương pháp y học cổ truyền an toàn, hiệu quả. Hệ thống SEO AI ra đời nhằm mục đích giúp chia sẻ rộng rãi những kiến thức y khoa, bài thuốc bổ ích chuẩn xác tới độc giả trên internet.
+              Chúng tôi chuyên tư vấn, chẩn trị và hỗ trợ phục hồi sức khỏe bằng các phương pháp y học cổ truyền an toàn, hiệu quả. Website ra đời nhằm mục đích giúp chia sẻ rộng rãi những kiến thức y khoa, bài thuốc bổ ích chuẩn xác tới độc giả trên internet.
             </p>
           </div>
         </div>

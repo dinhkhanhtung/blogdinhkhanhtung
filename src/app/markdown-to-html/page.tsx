@@ -21,7 +21,7 @@ import {
 
 export default function MarkdownToHtmlPage() {
   const [markdown, setMarkdown] = useState<string>(
-    `# Tiêu đề Markdown mẫu\n\nĐây là một ví dụ về **Markdown** được chuyển đổi trực tiếp sang **HTML**.\n\n## Danh sách các tính năng:\n- Chuyển đổi thời gian thực (Real-time)\n- Trình xem trước (Preview) trực quan\n- Sao chép mã HTML nhanh\n- Xuất file HTML tải về\n\n### Bảng dữ liệu minh họa:\n| Công cụ | Trạng thái | Hiệu năng |\n| :--- | :---: | ---: |\n| SEO AI | Đang chạy | Cực nhanh |\n| Khác | Đang chờ | Trung bình |\n\n> "Sử dụng Markdown giúp việc soạn thảo nội dung chuẩn SEO trở nên nhanh chóng và chuyên nghiệp hơn rất nhiều." - Đinh Khánh Tùng`
+    `# Tiêu đề Markdown mẫu\n\nĐây là một ví dụ về **Markdown** được chuyển đổi trực tiếp sang **HTML**.\n\n## Danh sách các tính năng:\n- Chuyển đổi thời gian thực (Real-time)\n- Trình xem trước (Preview) trực quan\n- Sao chép mã HTML nhanh\n- Xuất file HTML tải về\n\n### Bảng dữ liệu minh họa:\n| Công cụ | Trạng thái | Hiệu năng |\n| :--- | :---: | ---: |\n| Blog Đinh Khánh Tùng | Đang chạy | Cực nhanh |\n| Khác | Đang chờ | Trung bình |\n\n> "Sử dụng Markdown giúp việc soạn thảo nội dung chuẩn SEO trở nên nhanh chóng và chuyên nghiệp hơn rất nhiều." - Đinh Khánh Tùng`
   );
   const [html, setHtml] = useState<string>("");
   const [activeTab, setActiveTab] = useState<"preview" | "code">("preview");

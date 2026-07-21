@@ -19,11 +19,11 @@ export default function KiemTraTuKhoaPage() {
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 flex flex-col gap-2">
               <label className="text-sm font-semibold text-slate-700">Từ khóa (Keyword)</label>
-              <input type="text" placeholder="Ví dụ: công cụ seo ai" className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20" />
+              <input type="text" placeholder="Ví dụ: y học cổ truyền" className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20" />
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label className="text-sm font-semibold text-slate-700">Tên miền (Domain)</label>
-              <input type="text" placeholder="Ví dụ: congcuseoai.com" className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20" />
+              <input type="text" placeholder="Ví dụ: dinhkhanhtung.com" className="w-full p-3 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20" />
             </div>
             <div className="flex-1 flex flex-col gap-2">
               <label className="text-sm font-semibold text-slate-700">Khu vực (Quốc gia)</label>

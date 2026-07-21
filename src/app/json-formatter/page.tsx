@@ -5,7 +5,7 @@ import { FileJson, Copy, Trash2, Check, RefreshCw, AlertCircle, Wand2, Minimize2
 
 export default function JsonFormatterPage() {
   const [rawJson, setRawJson] = useState<string>(
-    `{"ten":"Phòng Chẩn Trị YHCT Thu Bẩy","nguoi_dai_dien":"Đinh Khánh Tùng","so_dien_thoai":"0982581222","dia_chi":"Tổ 10, Quan Triều, Thái Nguyên","dich_vu":["Chẩn trị","Kê đơn bốc thuốc","Y học cổ truyền"],"he_thong":{"ten_ap":"SEO AI","phien_ban":"2.5.0","tinh_trang":"Hoạt động"}}`
+    `{"ten":"Phòng Chẩn Trị YHCT Thu Bẩy","nguoi_dai_dien":"Đinh Khánh Tùng","so_dien_thoai":"0982581222","dia_chi":"Tổ 10, Quan Triều, Thái Nguyên","dich_vu":["Chẩn trị","Kê đơn bốc thuốc","Y học cổ truyền"],"he_thong":{"ten_app":"Blog Đinh Khánh Tùng","phien_ban":"2.5.0","tinh_trang":"Hoạt động"}}`
   );
   const [formattedJson, setFormattedJson] = useState<string>("");
   const [error, setError] = useState<string | null>(null);

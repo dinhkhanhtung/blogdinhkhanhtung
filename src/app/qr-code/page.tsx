@@ -19,7 +19,7 @@ export default function QrCodePage() {
           <div className="flex-1 w-full flex flex-col gap-4">
              <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-slate-700">Dữ liệu mã hóa (URL, Số điện thoại, Văn bản...)</label>
-                <textarea placeholder="https://congcuseoai.com" className="w-full min-h-[100px] p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-slate-700"></textarea>
+                <textarea placeholder="https://dinhkhanhtung.com" className="w-full min-h-[100px] p-4 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 text-slate-700"></textarea>
              </div>
              <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-slate-700">Màu sắc QR</label>

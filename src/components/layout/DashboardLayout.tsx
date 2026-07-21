@@ -442,6 +442,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <li><Link href="/blog?category=Đông+y" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Kiến thức Y Học</Link></li>
               <li><Link href="/gioi-thieu" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Giới thiệu Phòng Khám</Link></li>
               <li><Link href="/tools" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Công cụ hỗ trợ</Link></li>
+              <li><Link href="/chinh-sach-bao-mat" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Chính sách bảo mật</Link></li>
+              <li><Link href="/dieu-khoan-su-dung" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Điều khoản sử dụng</Link></li>
             </ul>
             <div className="border-t border-slate-700/60 pt-4">
               <div className="text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Giờ Làm Việc</div>
