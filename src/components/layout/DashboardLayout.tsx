@@ -67,7 +67,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const menuItems: MenuItem[] = [
     { title: "Trang chủ", href: "/" },
     { 
-      title: "Kiến thức", 
+      title: "Kiến thức Blog", 
       href: "/blog",
       isDropdown: true,
       dropdownWidth: "w-[500px]",
@@ -98,7 +98,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           ]
         },
         {
-          name: "Công Nghệ & AI",
+          name: "Công Nghe & AI",
           items: [
             { title: "AI Tools", href: "/blog?category=AI+Tools" },
             { title: "Prompt Engineering", href: "/blog?category=Prompt+Engineering" },
@@ -107,9 +107,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }
       ]
     },
-    { title: "Dịch vụ YHCT", href: "/dich-vu" },
+    { title: "Dịch vụ Số", href: "/dich-vu" },
     { 
-      title: "Công cụ & Tiện ích", 
+      title: "Công cụ AI & SEO", 
       href: "/tools",
       isDropdown: true,
       dropdownWidth: "w-[900px] -left-[400px]",
