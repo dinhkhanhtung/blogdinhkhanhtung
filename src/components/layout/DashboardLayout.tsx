@@ -206,21 +206,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex flex-col min-h-screen bg-background text-slate-800">
       
       {/* Top Bar - Thông tin liên hệ nhanh */}
-      <div className="bg-primary text-white py-2 px-4 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-medium">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> Tổ 10, Quan Triều, Thái Nguyên
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="w-4 h-4" /> Làm việc: 8:00 - 18:00 (T2 - CN)
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-2 font-bold">
-              <Phone className="w-4 h-4" /> Hotline: 0982.581.222
-            </span>
-          </div>
+      <div className="bg-primary text-white py-1.5 px-4 hidden md:block">
+        <div className="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm font-medium">
+          <span className="flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5" /> Tổ 10, Quan Triều, TP. Thái Nguyên
+          </span>
+          <a href="tel:0982581222" className="flex items-center gap-2 font-bold hover:underline">
+            <Phone className="w-3.5 h-3.5" /> Hotline / Zalo: 0982.581.222
+          </a>
         </div>
       </div>
 
@@ -313,22 +306,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             })}
           </nav>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-2 xl:gap-4 shrink-0">
-            <a
-              href="https://zalo.me/0982581222"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 bg-[#ca8a04] hover:bg-[#a16207] text-white px-4 xl:px-5 py-2.5 rounded-md text-sm xl:text-base font-bold transition-colors shadow-sm whitespace-nowrap"
-            >
-              <img
-                src="https://i.ibb.co/Wjz9N4P/AVv-Xs-Eg3-Dr-Zo-Aw-Hqb-R-Du-Iy32r-VDU8jh-XVN5-BI1-EFLFgt6-TLycc0-Ww9n1xen-D4-7r-MP4-jgdv-Hbyu-2-Gu-TN2h-O.png"
-                alt="Zalo"
-                className="w-5 h-5 object-contain brightness-0 invert"
-              />
-              Tư vấn Zalo
-            </a>
-
+          {/* Mobile Toggle */}
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-md"
