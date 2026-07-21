@@ -1,117 +1,97 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShieldCheck, ShoppingBag, Calendar } from "lucide-react";
+import { CheckCircle2, X, Sparkles } from "lucide-react";
 
-const PATIENTS = [
-  "Chị Nguyễn Thị H. (Thái Nguyên)",
-  "Anh Trần Tuấn A. (Thái Nguyên)",
-  "Cô Phạm Thanh B. (Phú Thọ)",
-  "Chú Ngô Quốc K. (Thái Nguyên)",
-  "Anh Hoàng Minh T. (Bắc Giang)",
-  "Chị Lê Mỹ L. (TP.HCM)",
-  "Bác Vũ Đình S. (Thái Nguyên)",
-  "Chị Đỗ Thu T. (Thái Nguyên)",
-  "Anh Nguyễn Hữu V. (Hà Nội)"
-];
+interface PopupNotification {
+  id: number;
+  name: string;
+  location: string;
+  action: string;
+  timeAgo: string;
+}
 
-const ACTIONS = [
-  { text: "đã đặt lịch khám xương khớp thành công", type: "booking" },
-  { text: "đã mua 2 hộp Trà Cổ Dược Dưỡng Sinh", type: "product" },
-  { text: "đã đăng ký tư vấn liệu trình châm cứu bấm huyệt", type: "booking" },
-  { text: "đã đặt lịch ngâm chân thảo dược trị liệu", type: "booking" },
-  { text: "đã mua 1 chai Dầu Thảo Dược Xoa Bóp", type: "product" },
-  { text: "đã đăng ký khám bệnh & bốc thuốc Đông Y", type: "booking" }
-];
-
-const TIMES = [
-  "vừa xong",
-  "1 phút trước",
-  "3 phút trước",
-  "5 phút trước",
-  "10 phút trước"
+const SAMPLE_NOTIFICATIONS: PopupNotification[] = [
+  { id: 1, name: "Anh Hoàng Nam", location: "Thái Nguyên", action: "đã đặt lịch khám YHCT tại Thu Bẩy", timeAgo: "2 phút trước" },
+  { id: 2, name: "Chị Minh Phương", location: "Hà Nội", action: "đang đọc bài viết Trà cổ dược dưỡng sinh", timeAgo: "5 phút trước" },
+  { id: 3, name: "Bác Thanh Tùng", location: "Bắc Giang", action: "đã xem bài thuốc Nam chữa đau khớp", timeAgo: "8 phút trước" },
+  { id: 4, name: "Anh Tuấn Anh", location: "Đà Nẵng", action: "vừa sử dụng công cụ Tạo Topical Map AI", timeAgo: "12 phút trước" },
+  { id: 5, name: "Chị Khánh Linh", location: "TP. HCM", action: "đã gửi câu hỏi tư vấn sức khỏe qua Zalo", timeAgo: "15 phút trước" },
 ];
 
 export default function FakePurchasePopup() {
-  const [show, setShow] = useState(false);
-  const [currentNotification, setCurrentNotification] = useState({
-    name: "",
-    action: "",
-    time: "",
-    type: "booking"
-  });
+  const [isEnabled, setIsEnabled] = useState(true);
+  const [currentNotification, setCurrentNotification] = useState<PopupNotification | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Không hiện ngay lập tức, đợi 15 giây đầu tiên
-    const initialDelay = setTimeout(() => {
-      triggerNotification();
-    }, 15000);
+    // Check if user or admin disabled popup
+    const disabledSetting = localStorage.getItem("fake_popup_enabled");
+    if (disabledSetting === "false") {
+      setIsEnabled(false);
+      return;
+    }
 
-    return () => clearTimeout(initialDelay);
+    let timer: NodeJS.Timeout;
+    const triggerPopup = () => {
+      const randomItem = SAMPLE_NOTIFICATIONS[Math.floor(Math.random() * SAMPLE_NOTIFICATIONS.length)];
+      setCurrentNotification(randomItem);
+      setIsVisible(true);
+
+      // Hide after 5 seconds
+      timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 5000);
+    };
+
+    // Initial trigger after 6 seconds
+    const initialDelay = setTimeout(triggerPopup, 6000);
+
+    // Loop interval every 18 seconds
+    const interval = setInterval(triggerPopup, 18000);
+
+    return () => {
+      clearTimeout(initialDelay);
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
-  const triggerNotification = () => {
-    const randomPatient = PATIENTS[Math.floor(Math.random() * PATIENTS.length)];
-    const randomAction = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
-    const randomTime = TIMES[Math.floor(Math.random() * TIMES.length)];
-
-    setCurrentNotification({
-      name: randomPatient,
-      action: randomAction.text,
-      time: randomTime,
-      type: randomAction.type
-    });
-
-    setShow(true);
-
-    // Tự động ẩn sau 6 giây
-    const hideTimeout = setTimeout(() => {
-      setShow(false);
-      
-      // Lên lịch cho thông báo tiếp theo sau 25 - 45 giây ngẫu nhiên
-      const nextDelay = Math.floor(Math.random() * (45000 - 25000 + 1)) + 25000;
-      const nextTimeout = setTimeout(triggerNotification, nextDelay);
-      return () => clearTimeout(nextTimeout);
-    }, 6000);
-
-    return () => clearTimeout(hideTimeout);
-  };
-
-  if (!show) return null;
+  if (!isEnabled || !isVisible || !currentNotification) return null;
 
   return (
-    <div className="fixed bottom-20 left-4 z-50 max-w-[340px] w-[calc(100%-32px)] sm:w-auto bg-white/95 backdrop-blur-md border border-green-100 rounded-2xl p-4 shadow-[0_10px_30px_rgba(21,128,61,0.12)] transition-all duration-500 ease-out transform translate-y-0 opacity-100 animate-in fade-in slide-in-from-bottom-5">
-      <div className="flex gap-3 items-start">
-        {/* Icon đại diện động */}
-        <div className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center border ${
-          currentNotification.type === "product" 
-            ? "bg-green-50 text-[#15803d] border-green-100" 
-            : "bg-blue-50 text-blue-600 border-blue-100"
-        }`}>
-          {currentNotification.type === "product" ? (
-            <ShoppingBag className="w-5 h-5" />
-          ) : (
-            <Calendar className="w-5 h-5" />
-          )}
+    <div className="fixed bottom-20 lg:bottom-6 left-4 z-50 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm">
+      <div className="bg-white/95 backdrop-blur-md border border-slate-200 p-3.5 rounded-2xl shadow-xl flex items-center gap-3 relative overflow-hidden group">
+        
+        {/* Decorative Green Accent Bar */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#15803d]" />
+
+        {/* Icon */}
+        <div className="w-9 h-9 rounded-xl bg-[#15803d]/10 text-[#15803d] flex items-center justify-center shrink-0">
+          <Sparkles className="w-4 h-4 animate-pulse" />
         </div>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex justify-between items-center gap-2 mb-0.5">
-            <span className="text-xs font-bold text-slate-900 truncate">
-              {currentNotification.name}
-            </span>
-            <span className="text-[10px] font-semibold text-slate-400 shrink-0">
-              {currentNotification.time}
-            </span>
+        {/* Text Details */}
+        <div className="flex-1 text-xs pr-4">
+          <div className="font-bold text-slate-900 leading-tight">
+            {currentNotification.name} <span className="font-normal text-slate-500">({currentNotification.location})</span>
           </div>
-          <p className="text-xs text-slate-600 font-medium leading-relaxed">
+          <div className="text-slate-600 font-medium line-clamp-1 mt-0.5">
             {currentNotification.action}
-          </p>
-          <div className="flex items-center gap-1 mt-1.5 text-[9px] font-bold text-[#15803d]">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Phòng khám Đông y Thu Bẩy</span>
+          </div>
+          <div className="text-[10px] text-slate-400 font-semibold mt-1">
+            {currentNotification.timeAgo} • Đã xác minh
           </div>
         </div>
+
+        {/* Close Button */}
+        <button
+          onClick={() => setIsVisible(false)}
+          className="text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition-colors"
+          aria-label="Đóng thông báo"
+        >
+          <X className="w-3.5 h-3.5" />
+        </button>
       </div>
     </div>
   );
