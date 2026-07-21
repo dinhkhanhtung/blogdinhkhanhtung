@@ -107,7 +107,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }
       ]
     },
-    { title: "Dịch vụ phòng khám", href: "/dich-vu" },
+    { title: "Dịch vụ YHCT", href: "/dich-vu" },
     { 
       title: "Công cụ & Tiện ích", 
       href: "/tools",

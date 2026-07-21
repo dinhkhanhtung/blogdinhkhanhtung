@@ -231,11 +231,10 @@ function BlogPostDetail({ post, allPosts, onBack }: { post: Post; allPosts: Post
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
   </div>
-  );
+);
 }
 
 function BlogListContent() {
