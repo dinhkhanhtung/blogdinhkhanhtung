@@ -613,58 +613,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </div>
 
-      {/* Desktop Floating Quick Contacts (Sidebar) */}
-      <div className="hidden lg:flex fixed lg:right-6 bottom-24 z-40 flex-col gap-2.5">
+      {/* Desktop Floating Zalo Contact Button */}
+      <div className="hidden lg:flex fixed lg:right-6 bottom-24 z-40">
         <a 
           href="https://zalo.me/0982581222" 
           target="_blank" 
           rel="noopener noreferrer" 
-          title="Nhắn tin Zalo"
-          className="w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group"
+          title="Liên hệ Zalo"
+          className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-slate-200/80 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group"
         >
           <img 
             src="https://i.ibb.co/Wjz9N4P/AVv-Xs-Eg3-Dr-Zo-Aw-Hqb-R-Du-Iy32r-VDU8jh-XVN5-BI1-EFLFgt6-TLycc0-Ww9n1xen-D4-7r-MP4-jgdv-Hbyu-2-Gu-TN2h-O.png" 
             alt="Zalo" 
-            className="w-7 h-7 object-contain" 
-          />
-        </a>
-        <a 
-          href="https://m.me/dinhkhanhtung" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title="Nhắn tin Messenger"
-          className="w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
-        >
-          <img 
-            src="https://i.ibb.co/B523cQD3/3c39891bc36c.png" 
-            alt="Messenger" 
-            className="w-7 h-7 object-contain" 
-          />
-        </a>
-        <a 
-          href="https://www.facebook.com/dinhkhanhtung" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title="Truy cập Facebook"
-          className="w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
-        >
-          <img 
-            src="https://i.ibb.co/tTxPVxhX/facebook-page.png" 
-            alt="Facebook" 
-            className="w-7 h-7 object-contain" 
-          />
-        </a>
-        <a 
-          href="https://maps.google.com/?q=Tổ+10,+Quan+Triều,+Thái+Nguyên" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title="Bản đồ phòng khám"
-          className="w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
-        >
-          <img 
-            src="https://i.ibb.co/fdtwLz7F/397619b871de.png" 
-            alt="Google Maps" 
-            className="w-7 h-7 object-contain" 
+            className="w-6 h-6 object-contain group-hover:rotate-6 transition-transform" 
           />
         </a>
       </div>

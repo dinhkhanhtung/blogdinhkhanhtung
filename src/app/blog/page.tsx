@@ -230,24 +230,7 @@ function BlogPostDetail({ post, allPosts, onBack }: { post: Post; allPosts: Post
               ))}
             </div>
           </div>
-
-          <div className="bg-primary text-white rounded-2xl p-6 text-center shadow-md relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <BookOpen className="w-24 h-24" />
-            </div>
-            <h4 className="text-xl font-heading font-bold mb-2 relative z-10">Tư Vấn & Đặt Lịch Hẹn</h4>
-            <p className="text-sm mb-5 text-emerald-50 leading-relaxed relative z-10">
-              Liên hệ trực tiếp Thầy thuốc Đinh Khánh Tùng để được tư vấn sức khỏe YHCT hoặc trao đổi tri thức.
-            </p>
-            <a 
-              href="https://zalo.me/0982581222" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="block w-full bg-white text-primary py-3 rounded-xl font-bold hover:bg-slate-100 transition-colors shadow-sm relative z-10"
-            >
-              Liên Hệ Zalo: 0982.581.222
-            </a>
-          </div>
+        </div>
         </div>
       </div>
     </div>
