@@ -34,7 +34,9 @@ import {
   CheckCircle2,
   ExternalLink,
   Sparkles,
-  Compass
+  Compass,
+  Clock,
+  Navigation
 } from "lucide-react";
 
 const SERVICES = [
@@ -311,7 +313,7 @@ export default function Home() {
       `}} />
 
       {/* 1. Hero Banner */}
-      <section className="bg-slate-50 border-b border-slate-200">
+      <section className="bg-[#fbfaf8] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-5">
@@ -415,8 +417,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. DỊCH VỤ SỐ & CÔNG NGHỆ */}
-      <section className="py-8 md:py-16 bg-slate-50 border-b border-slate-200">
+      {/* 3. Dịch Vụ Nổi Bật */}
+      <section className="py-8 md:py-16 bg-[#fbfaf8] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-6 md:mb-10">
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-900 mb-4">Dịch Vụ Số & Công Nghệ</h2>
@@ -664,7 +666,7 @@ export default function Home() {
       </section>
 
       {/* 5. Cổng Blog - Kiến thức VỚI TABS */}
-      <section className="py-8 md:py-16 bg-slate-50 border-b border-slate-200">
+      <section className="py-8 md:py-16 bg-[#fbfaf8] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8 gap-4">
             <div className="w-full">
@@ -857,7 +859,7 @@ export default function Home() {
       </section>
 
       {/* 6.5. FAQ - HỎI ĐÁP THƯỜNG GẶP - MỚI */}
-      <section className="py-8 md:py-16 bg-slate-50 border-b border-slate-200">
+      <section className="py-8 md:py-16 bg-[#fbfaf8] border-b border-slate-200">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-6 md:mb-10">
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-900 mb-3">Hỏi Đáp Thường Gặp</h2>
@@ -883,6 +885,88 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.8. SECTION BẢN ĐỒ VỊ TRÍ PHÒNG KHÁM - MỚI */}
+      <section className="py-8 md:py-16 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-6 md:mb-10">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 border border-green-200 rounded-full text-xs font-bold text-[#15803d] uppercase tracking-wider mb-2">
+              <MapPin className="w-3.5 h-3.5" /> Địa chỉ phòng khám
+            </span>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-900 mb-3">Vị Trí & Bản Đồ Chỉ Đường</h2>
+            <div className="w-16 h-1 bg-[#15803d] mx-auto mb-4"></div>
+            <p className="text-slate-600">Phòng Chẩn Trị Y Học Cổ Truyền Thu Bẩy - Thầy thuốc Đinh Khánh Tùng.</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#fbfaf8] border border-slate-200 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm">
+            <div className="lg:col-span-5 space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 bg-[#15803d]/10 text-[#15803d] rounded-xl flex items-center justify-center shrink-0 border border-[#15803d]/20 mt-0.5">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Địa chỉ phòng khám</h4>
+                    <p className="text-base font-bold text-slate-900">Tổ 10, Phường Quan Triều, TP. Thái Nguyên</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 bg-[#15803d]/10 text-[#15803d] rounded-xl flex items-center justify-center shrink-0 border border-[#15803d]/20 mt-0.5">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Thời gian đón tiếp</h4>
+                    <p className="text-base font-bold text-slate-900">08:00 - 18:00 (Tất cả các ngày trong tuần)</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 bg-[#15803d]/10 text-[#15803d] rounded-xl flex items-center justify-center shrink-0 border border-[#15803d]/20 mt-0.5">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Hotline & Zalo tư vấn</h4>
+                    <a href="tel:0982581222" className="text-lg font-black text-[#15803d] hover:underline">0982.581.222</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://maps.google.com/?q=Phòng+Chẩn+Trị+YHCT+Thu+Bẩy+Tổ+10+Quan+Triều+Thái+Nguyên"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-6 py-3.5 bg-[#15803d] hover:bg-[#166534] text-white font-bold text-sm rounded-xl transition-all shadow-md active:scale-95"
+                >
+                  <Navigation className="w-4 h-4" /> Dẫn đường Google Maps
+                </a>
+                <a
+                  href="https://zalo.me/0982581222"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 font-bold text-sm rounded-xl transition-all active:scale-95"
+                >
+                  Đặt lịch khám trước
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 h-[340px] sm:h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
+              <iframe
+                title="Bản đồ Google Maps Phòng Chẩn Trị YHCT Thu Bẩy"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.125432109876!2d105.81500000000002!3d21.615000000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDM2JzU0LjAiTiAxMDXCsDQ4JzU0LjAiRQ!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>

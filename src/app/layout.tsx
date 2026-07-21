@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Lora } from "next/font/google";
 import "./globals.css";
+import NextTopLoader from "nextjs-toploader";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import BackToTop from "@/components/shared/BackToTop";
 
@@ -36,7 +37,18 @@ export default function RootLayout({
       lang="vi"
       className={`${beVietnamPro.variable} ${lora.variable} antialiased scroll-smooth`}
     >
-      <body className="font-sans bg-slate-50 text-slate-800">
+      <body className="font-sans bg-[#fbfaf8] text-slate-800">
+        <NextTopLoader
+          color="#15803d"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #15803d,0 0 5px #15803d"
+        />
         <DashboardLayout>
           {children}
         </DashboardLayout>

@@ -17,6 +17,7 @@ import {
   MessageCircle,
   Stethoscope
 } from "lucide-react";
+import FakePurchasePopup from "@/components/shared/FakePurchasePopup";
 
 interface SubMenuItem {
   title: string;
@@ -43,6 +44,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+  const [onlineCount, setOnlineCount] = useState(28);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +52,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOnlineCount(prev => {
+        const delta = Math.random() > 0.5 ? 1 : -1;
+        const next = prev + delta;
+        return next > 45 ? 45 : next < 15 ? 15 : next;
+      });
+    }, 12000);
+    return () => clearInterval(interval);
   }, []);
 
   const menuItems: MenuItem[] = [
@@ -191,7 +204,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800">
+    <div className="flex flex-col min-h-screen bg-[#fbfaf8] text-slate-800">
       
       {/* Top Bar - Thông tin liên hệ nhanh */}
       <div className="bg-[#15803d] text-white py-2 px-4 hidden md:block">
@@ -404,39 +417,66 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <span>Facebook Cá Nhân</span>
                 </a>
               </li>
+              <li className="flex items-center gap-3 border-t border-slate-700/40 pt-2.5">
+                <a 
+                  href="https://g.page/r/CUXNMH8bivYcEAI/review" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-3 hover:text-white transition-colors group"
+                >
+                  <img 
+                    src="https://img.icons8.com/color/144/google-logo.png" 
+                    alt="Google Review" 
+                    className="w-5 h-5 shrink-0 object-contain group-hover:scale-110 transition-transform" 
+                  />
+                  <span className="font-bold text-amber-400">Đánh giá Google 5 Sao ⭐</span>
+                </a>
+              </li>
             </ul>
           </div>
 
           <div className="space-y-4">
             <h4 className="text-lg font-heading font-bold text-white border-b border-slate-700 pb-2">Thông Tin Hữu Ích</h4>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-2.5 text-sm mb-4">
               <li><Link href="/" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Trang chủ</Link></li>
               <li><Link href="/blog?category=Đông+y" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Kiến thức Y Học</Link></li>
               <li><Link href="/gioi-thieu" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Giới thiệu Phòng Khám</Link></li>
               <li><Link href="/tools" className="hover:text-white transition-colors flex items-center gap-1"><ChevronRight className="w-3 h-3 text-[#15803d]" /> Công cụ hỗ trợ</Link></li>
             </ul>
+            <div className="border-t border-slate-700/60 pt-4">
+              <div className="text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Giờ Làm Việc</div>
+              <ul className="space-y-1.5 text-xs text-slate-300">
+                <li className="flex justify-between"><span>Thứ 2 - Thứ 6:</span><span className="font-bold text-white">08:00 - 18:00</span></li>
+                <li className="flex justify-between"><span>Thứ 7 - Chủ Nhật:</span><span className="font-bold text-white">08:00 - 17:00</span></li>
+              </ul>
+            </div>
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-lg font-heading font-bold text-white border-b border-slate-700 pb-2">Giờ Làm Việc</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="flex justify-between border-b border-slate-700/50 pb-2">
-                <span>Thứ 2 - Thứ 6:</span>
-                <span className="font-bold text-white">08:00 - 18:00</span>
-              </li>
-              <li className="flex justify-between border-b border-slate-700/50 pb-2">
-                <span>Thứ 7 - Chủ Nhật:</span>
-                <span className="font-bold text-white">08:00 - 17:00</span>
-              </li>
-              <li className="mt-4 p-3 bg-slate-800 rounded-lg text-xs text-center border border-slate-700 text-slate-400">
-                Vui lòng gọi điện hoặc nhắn Zalo đặt lịch trước khi đến để được phục vụ tốt nhất.
-              </li>
-            </ul>
+            <h4 className="text-lg font-heading font-bold text-white border-b border-slate-700 pb-2">Ủng Hộ (Donate)</h4>
+            <div className="bg-slate-800/80 border border-slate-700/60 p-4 rounded-xl space-y-2.5 text-xs text-slate-300">
+              <div className="font-bold text-slate-200 text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                Ngân Hàng BIDV
+              </div>
+              <div>Chủ tài khoản: <strong className="text-white">ĐINH KHÁNH TÙNG</strong></div>
+              <div>Số tài khoản: <strong className="text-white select-all">0982581222</strong></div>
+              <div className="text-[10px] text-slate-400 pt-1 leading-relaxed border-t border-slate-700/40">
+                Ủng hộ duy trì máy chủ Blog và các công cụ tiện ích miễn phí cho cộng đồng.
+              </div>
+            </div>
           </div>
 
         </div>
 
-        <div className="max-w-7xl mx-auto border-t border-slate-700 mt-12 pt-6 text-center">
+        <div className="max-w-7xl mx-auto border-t border-slate-700 mt-12 pt-6 text-center space-y-4">
+          <div className="flex items-center justify-center gap-2 text-sm text-slate-400 font-bold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span>Đang trực tuyến: <strong className="text-white">{onlineCount}</strong> người truy cập</span>
+          </div>
           <p className="text-sm text-slate-400">
             © {new Date().getFullYear()} Blog Đinh Khánh Tùng. Created with ❤️ by Đinh Khánh Tùng. <br className="sm:hidden" />Tài trợ bởi <a href="https://kimke.store/" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-[#22c55e] font-semibold transition-colors">kimke.store</a>.
           </p>
@@ -648,6 +688,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           />
         </a>
       </div>
+
+      {/* Fake Purchase / Booking Notification Popup */}
+      <FakePurchasePopup />
     </div>
   );
 }
